@@ -1,13 +1,13 @@
 <template>
     <div>
-        <el-form ref="form1" :model="form1" label-width="60px" @submit.native.prevent class="layout1">
+        <el-form ref="form1" :model="form1" label-width="60px" @submit.native.prevent class="layout1f1">
             <el-form-item label="证件号">
                 <el-input v-model="form1.idnumber" @keyup.enter.native="dosearch0">
                     <el-button slot="append" icon="el-icon-search" @click="dosearch0"></el-button>
                 </el-input>
             </el-form-item>
         </el-form>
-        <el-form :inline="true" ref="form1" :model="form1" label-width="60px" class="layout2">
+        <el-form :inline="true" ref="form1" :model="form1" label-width="60px" class="layout1f2">
             <el-form-item label="姓名">
                 <el-input v-model="form1.name" readonly="true" style="width: 120px"></el-input>
             </el-form-item>
@@ -21,9 +21,9 @@
                 <el-input v-model="form1.address" readonly="true" style="width: 525px"></el-input>
             </el-form-item>
         </el-form>
-        <el-form :inline="true"  label-width="80px" class="layout3">
+        <el-form :inline="true"  label-width="80px" class="layout1f3">
             <el-form-item label="会员期限">
-                <el-input readonly="true" style="width: 60px" placeholder="3年"></el-input>
+                <el-input readonly="true" style="width: 60px" value="3年"></el-input>
             </el-form-item>
             <el-form-item label="有效期">
                 <el-date-picker
@@ -51,10 +51,13 @@
             <el-form-item label="定制电话">
                 <el-input style="width: 135px"></el-input>
             </el-form-item>
-            <el-form-item label="备注">
+            <el-form-item label="备注信息">
                 <el-input style="width: 505px"></el-input>
             </el-form-item>
         </el-form>
+        <div style="width:640px;text-align: center;">
+            <el-button type="primary">开卡</el-button>
+        </div>
     </div>
 </template>
 
@@ -63,10 +66,10 @@
         data() {
             return {
                 form1: {
-                    idnumber: '333444',
-                    name: '哈哈哈哈',
-                    sex: '男',
-                    mobile: '13800123456',
+                    idnumber: '',
+                    name: '',
+                    sex: '',
+                    mobile: '',
                     address: ''
                 },
                 period:['','']
@@ -86,21 +89,24 @@
 </script>
 
 <style>
-    .layout1 {
+    .layout1f1 {
         width: 590px;
         height: 44px;
         background-color: white;
         padding: 20px 30px 20px 20px;
         margin-bottom: 12px;
     }
-    .layout2 {
+    .layout1f2 {
         width: 600px;
         height: 108px;
         background-color: white;
         padding: 20px 20px;
         margin-bottom: 12px;
     }
-    .layout3 {
+    .layout1f2 .el-input__inner {
+        background-color: #eee;
+    }
+    .layout1f3 {
         width: 600px;
         height: 172px;
         background-color: white;
