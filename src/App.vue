@@ -15,7 +15,7 @@
             </el-header>
             <el-container>
                 <el-aside width="180px">
-                    <el-menu :router="true" default-active="/3" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+                    <el-menu :router="true" :default-active="$route.path" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
                         <el-submenu index="1" v-show="false">
                             <template slot="title"><i class="el-icon-message"></i>导航一</template>
                             <el-menu-item-group>
@@ -34,7 +34,8 @@
                         <el-menu-item index="/3"><i class="el-icon-menu"></i>开卡</el-menu-item>
                         <el-menu-item index="/4"><i class="el-icon-d-arrow-right"></i>续卡</el-menu-item>
                         <el-menu-item index="/5"><i class="el-icon-sort"></i>转卡</el-menu-item>
-                        <el-menu-item index="/6"><i class="el-icon-delete"></i>退卡</el-menu-item>
+                        <el-menu-item index="/6"><i class="el-icon-sold-out"></i>预存</el-menu-item>
+                        <el-menu-item index="/7"><i class="el-icon-delete"></i>退卡</el-menu-item>
                     </el-menu>
                 </el-aside>
                 <el-main>
