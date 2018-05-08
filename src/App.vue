@@ -45,6 +45,23 @@
                 </el-main>
             </el-container>
         </el-container>
+        <el-dialog title="登录" :visible.sync="dialogVisible" width="360px"
+                   center
+                   :close-on-click-modal="false"
+                   :close-on-press-escape="false"
+                    :show-close="false">
+            <el-form>
+                <el-form-item label="用户名">
+                    <el-input v-model="username"></el-input>
+                </el-form-item>
+                <el-form-item label="密码">
+                    <el-input v-model="password" type="password"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="dialogVisible = false">登录</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -52,7 +69,11 @@
     export default {
         data() {
             return {
+                dialogVisible: true
             }
+        },
+        mounted() {
+
         },
         methods: {
         }
