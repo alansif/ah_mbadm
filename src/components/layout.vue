@@ -1,13 +1,11 @@
 <template>
     <div>
-        <el-form ref="form1" :model="form1" label-width="60px" @submit.native.prevent class="layout1f1">
+        <el-form :inline="true" ref="form1" :model="form1" label-width="60px" @submit.native.prevent class="layout1f1">
             <el-form-item label="证件号">
-                <el-input v-model="form1.idnumber" @keyup.enter.native="dosearch0">
+                <el-input id="idinput" :maxlength="18" v-model="form1.idnumber" @keyup.enter.native="dosearch0" style="width: 525px">
                     <el-button slot="append" icon="el-icon-search" @click="dosearch0"></el-button>
                 </el-input>
             </el-form-item>
-        </el-form>
-        <el-form :inline="true" ref="form1" :model="form1" label-width="60px" class="layout1f2">
             <el-form-item label="姓名">
                 <el-input v-model="form1.name" readonly="true" style="width: 120px"></el-input>
             </el-form-item>
@@ -90,20 +88,16 @@
 
 <style>
     .layout1f1 {
-        width: 590px;
-        height: 44px;
-        background-color: white;
-        padding: 20px 30px 20px 20px;
-        margin-bottom: 12px;
-    }
-    .layout1f2 {
         width: 600px;
-        height: 108px;
+        height: 170px;
         background-color: white;
-        padding: 20px 20px;
+        padding: 20px;
         margin-bottom: 12px;
     }
-    .layout1f2 .el-input__inner {
+    #idinput {
+        background-color: inherit;
+    }
+    .layout1f1 .el-input__inner {
         background-color: #eee;
     }
     .layout1f3 {
