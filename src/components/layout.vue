@@ -52,10 +52,10 @@
             <el-form-item label="备注信息">
                 <el-input style="width: 505px"></el-input>
             </el-form-item>
+            <div style="width:100%;text-align: center;">
+                <el-button type="primary">开卡</el-button>
+            </div>
         </el-form>
-        <div style="width:640px;text-align: center;">
-            <el-button type="primary">开卡</el-button>
-        </div>
     </div>
 </template>
 
@@ -102,9 +102,7 @@
     }
     .layout1f3 {
         width: 600px;
-        height: 172px;
         background-color: white;
         padding: 20px 20px;
-        margin-bottom: 12px;
     }
 </style>

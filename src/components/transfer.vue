@@ -7,7 +7,6 @@
                 </el-input>
             </el-form-item>
         </el-form>
-        <baseinfo></baseinfo>
         <el-form :inline="true" ref="form1" :model="form1" label-width="80px" @submit.native.prevent class="tff2">
             <el-form-item label="入证件号">
                 <el-input id="tfidinput" :maxlength="18" placeholder="请输入转入者证件号码" v-model="form1.idnumber" @keyup.enter.native="dosearch1" style="width: 550px">
@@ -29,7 +28,11 @@
             <el-form-item label="手续费">
                 <el-input id="tffee" v-model="form1.fee" style="width: 120px" onkeypress="return (event.charCode===46) || (event.charCode>=48 && event.charCode <=57)"></el-input>
             </el-form-item>
+            <div style="width:100%;text-align: center;">
+                <el-button type="primary">转卡</el-button>
+            </div>
         </el-form>
+        <baseinfo :showme="showbaseinfo"></baseinfo>
     </div>
 </template>
 
@@ -47,11 +50,13 @@
                     address: '',
                     fee: 0
                 },
+                showbaseinfo: false
             }
         },
         methods: {
             dosearch0() {
                 console.log(this.idnumber0);
+                this.showbaseinfo = !this.showbaseinfo;
             },
             dosearch1() {
                 console.log(this.form1.idnumber);
@@ -65,15 +70,14 @@
 
 <style>
     .tff1 {
-        width: 640px;
+        width: 630px;
         height: 44px;
         background-color: white;
         padding: 20px 30px 20px 20px;
         margin-bottom: 12px;
     }
     .tff2 {
-        width: 650px;
-        height: 230px;
+        width: 640px;
         background-color: white;
         padding: 20px;
         margin-bottom: 12px;

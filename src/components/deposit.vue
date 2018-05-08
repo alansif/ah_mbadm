@@ -7,7 +7,6 @@
                 </el-input>
             </el-form-item>
         </el-form>
-        <baseinfo></baseinfo>
         <el-form label-width="80px" @submit.native.prevent class="dpf2">
             <el-form-item label="充值金额">
                 <el-input v-model="amount" style="width: 140px" onkeypress="return (event.charCode===46) || (event.charCode>=48 && event.charCode <=57)"></el-input>
@@ -19,7 +18,11 @@
             <el-form-item label="备注信息">
                 <el-input v-model="comment1" style="width: 560px"></el-input>
             </el-form-item>
+            <div style="width:100%;text-align: center;">
+                <el-button type="primary">预存</el-button>
+            </div>
         </el-form>
+        <baseinfo :showme="showbaseinfo"></baseinfo>
     </div>
 </template>
 
@@ -31,12 +34,14 @@
                 idnumber: '110101190010104567',
                 amount: 0,
                 dptype: '1',
-                comment1: ''
+                comment1: '',
+                showbaseinfo: false
             }
         },
         methods: {
             dosearch0() {
                 console.log(this.idnumber);
+                this.showbaseinfo = !this.showbaseinfo;
             }
         },
         components:{
@@ -55,7 +60,6 @@
     }
     .dpf2 {
         width: 650px;
-        height: 168px;
         background-color: white;
         padding: 20px;
         margin-bottom: 12px;

@@ -7,7 +7,6 @@
                 </el-input>
             </el-form-item>
         </el-form>
-        <baseinfo></baseinfo>
         <el-form :inline="true" label-width="80px" class="layout2f2">
             <el-form-item label="有效期">
                 <el-date-picker
@@ -30,7 +29,11 @@
                         onkeypress="return (event.charCode===46) || (event.charCode>=48 && event.charCode <=57)">
                 </el-input>
             </el-form-item>
+            <div style="width:100%;text-align: center;">
+                <el-button type="primary">续卡</el-button>
+            </div>
         </el-form>
+        <baseinfo :showme="showbaseinfo"></baseinfo>
     </div>
 </template>
 
@@ -41,7 +44,8 @@
             return {
                 idnumber: '110101190010104567',
                 period:['',''],
-                price: 9988
+                price: 9988,
+                showbaseinfo: false
             }
         },
         mounted() {
@@ -52,6 +56,7 @@
         methods: {
             dosearch0() {
                 console.log(this.idnumber);
+                this.showbaseinfo = !this.showbaseinfo;
             }
         },
         components:{
@@ -70,7 +75,6 @@
     }
     .layout2f2 {
         width: 650px;
-        height: 40px;
         background-color: white;
         padding: 20px 20px;
         margin-bottom: 12px;
