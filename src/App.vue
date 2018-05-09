@@ -3,7 +3,7 @@
         <el-container style="position: absolute;top:0;bottom: 0;left: 0;width: 100%;">
             <el-header>
                 <el-menu mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" style="float: right">
-                    <el-menu-item index="/">用户管理</el-menu-item>
+                    <el-menu-item index="/">{{realname}}</el-menu-item>
                     <el-submenu index="2" v-show="false">
                         <template slot="title">我的工作台</template>
                         <el-menu-item index="2-1">选项1</el-menu-item>
@@ -66,22 +66,28 @@
 </template>
 
 <script>
-    import restapi from './restapi.js';
+    import {restbase} from './restapi.js';
     export default {
         data() {
             return {
                 dialogVisible: true,
                 username: '',
-                password: ''
+                password: '',
+                realname: '[登录]'
             }
         },
         mounted() {
         },
         methods: {
             login() {
-                console.log(this.username);
-                console.log(this.password);
-//                dialogVisible = false;
+                this.$axios.post(restbase() + 'login', {username:this.username, password:this.password})
+                    .then(response => {
+                        this.realname = response.data.data['username'];
+                        this.dialogVisible = false;
+                    })
+                    .catch(function(error){
+                        console.log(error.response);
+                    });
             }
         }
     }
