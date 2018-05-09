@@ -59,23 +59,30 @@
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="dialogVisible = false">登录</el-button>
+                <el-button type="primary" @click="login">登录</el-button>
             </span>
         </el-dialog>
     </div>
 </template>
 
 <script>
+    import restapi from './restapi.js';
     export default {
         data() {
             return {
-                dialogVisible: true
+                dialogVisible: true,
+                username: '',
+                password: ''
             }
         },
         mounted() {
-
         },
         methods: {
+            login() {
+                console.log(this.username);
+                console.log(this.password);
+//                dialogVisible = false;
+            }
         }
     }
 </script>
