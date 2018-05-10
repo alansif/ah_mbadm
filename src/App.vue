@@ -55,7 +55,7 @@
                     <el-input v-model="username"></el-input>
                 </el-form-item>
                 <el-form-item label="密码">
-                    <el-input v-model="password" type="password"></el-input>
+                    <el-input v-model="password" type="password" @keyup.enter.native="login"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
