@@ -89,6 +89,7 @@
                         this.$axios.post(restbase() + 'login', {username:this.loginform.username, password:this.loginform.password})
                             .then(response => {
                                 this.realname = response.data.data['username'];
+                                this.$root.oprt = this.realname;
                                 this.dialogVisible = false;
                             })
                             .catch(error => {

@@ -120,9 +120,19 @@
                     });
             },
             newuser() {
+                this.form1.idnumber = this.form1.idnumber.replace(/^\s+/, "").replace(/\s+$/, "");
+                if (this.form1.idnumber.length !== 18) {
+                    this.$message.error('证件号码格式错误');
+                    return;
+                }
+                this.form1.name = this.form1.name.replace(/^\s+/, "").replace(/\s+$/, "");
+                if (this.form1.name.length === 0) {
+                    this.$message.error('需要姓名');
+                    return;
+                }
                 this.$refs["form2"].validate(valid => {
                     if (valid) {
-//                        this.loading = true;
+                        this.loading = true;
                         this.$axios.post(restbase() + 'card',{
                                 id:this.form1.idnumber,
                                 name:this.form1.name,
@@ -134,11 +144,18 @@
                                 price:this.form2.price,
                                 advisor:this.form2.advisor,
                                 altphone:this.form2.altphone,
-                                comment:this.form2.commentinfo
+                                comment:this.form2.commentinfo,
+                                operator:this.$root.oprt
                             })
                             .then(response => {
+                                this.loading = false;
                                 const d = response.data.data;
                                 console.log(d);
+                                this.$message({
+                                    message: response.data.status.message,
+                                    type: 'success',
+                                    center: true
+                                });
                             })
                             .catch(error => {
                                 this.loading = false;
