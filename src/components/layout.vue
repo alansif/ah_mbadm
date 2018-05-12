@@ -57,14 +57,14 @@
                 <el-input v-model="form2.commentinfo" style="width: 505px"></el-input>
             </el-form-item>
             <div style="width:100%;text-align: center;">
-                <el-button type="primary" @click="newuser">开卡</el-button>
+                <el-button type="primary" :loading="loading" @click="newuser">开卡</el-button>
             </div>
         </el-form>
     </div>
 </template>
 
 <script>
-    import {restbase} from '../restapi.js';
+    import {restbase,reserr} from '../restapi.js';
     export default {
         data() {
             return {
@@ -82,7 +82,8 @@
                     advisor: '',
                     altphone: '',
                     commentinfo: ''
-                }
+                },
+                loading: false
             }
         },
         mounted() {
@@ -113,12 +114,41 @@
                     })
                     .catch(error => {
                         if (error) {
-                            this.$message.error(error.response.statusText);
+                            console.dir(error);
+                            this.$message.error(reserr(error));
                         }
                     });
             },
             newuser() {
-                this.$refs["form2"].validate(valid => {});
+                this.$refs["form2"].validate(valid => {
+                    if (valid) {
+//                        this.loading = true;
+                        this.$axios.post(restbase() + 'card',{
+                                id:this.form1.idnumber,
+                                name:this.form1.name,
+                                sex:this.form1.sex,
+                                mobile:this.form1.mobile,
+                                address:this.form1.address,
+                                period0:this.form2.period[0],
+                                period1:this.form2.period[1],
+                                price:this.form2.price,
+                                advisor:this.form2.advisor,
+                                altphone:this.form2.altphone,
+                                comment:this.form2.commentinfo
+                            })
+                            .then(response => {
+                                const d = response.data.data;
+                                console.log(d);
+                            })
+                            .catch(error => {
+                                this.loading = false;
+                                if (error) {
+                                    console.dir(error);
+                                    this.$message.error(reserr(error));
+                                }
+                            });
+                    }
+                });
             }
         }
     }

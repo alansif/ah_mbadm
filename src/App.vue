@@ -50,16 +50,16 @@
                    :close-on-click-modal="false"
                    :close-on-press-escape="false"
                     :show-close="false">
-            <el-form>
-                <el-form-item label="用户名">
-                    <el-input v-model="username"></el-input>
+            <el-form ref="loginform" :model="loginform">
+                <el-form-item label="用户名" prop="username" :rules="[{required:true,message:'请填写用户名'}]">
+                    <el-input v-model="loginform.username" ></el-input>
                 </el-form-item>
-                <el-form-item label="密码">
-                    <el-input v-model="password" type="password" @keyup.enter.native="login"></el-input>
+                <el-form-item label="密码" prop="password">
+                    <el-input v-model="loginform.password" type="password" @keyup.enter.native="login"></el-input>
                 </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
-                <el-button type="primary" @click="login">登录</el-button>
+                <el-button type="primary" :loading="loading" @click="login">登录</el-button>
             </span>
         </el-dialog>
     </div>
@@ -71,23 +71,34 @@
         data() {
             return {
                 dialogVisible: true,
-                username: '',
-                password: '',
-                realname: '[登录]'
+                realname: '[登录]',
+                loading: false,
+                loginform: {
+                    username: '',
+                    password: '',
+                }
             }
         },
         mounted() {
         },
         methods: {
             login() {
-                this.$axios.post(restbase() + 'login', {username:this.username, password:this.password})
-                    .then(response => {
-                        this.realname = response.data.data['username'];
-                        this.dialogVisible = false;
-                    })
-                    .catch(function(error){
-                        console.log(error.response);
-                    });
+                this.$refs["loginform"].validate(valid => {
+                    if (valid) {
+                        this.loading = true;
+                        this.$axios.post(restbase() + 'login', {username:this.loginform.username, password:this.loginform.password})
+                            .then(response => {
+                                this.realname = response.data.data['username'];
+                                this.dialogVisible = false;
+                            })
+                            .catch(error => {
+                                this.loading = false;
+                                if (error) {
+                                    this.$message.error(error.response ? (error.response.data ? error.response.data.status.message : error.response.statusText) : error.message);
+                                }
+                            });
+                    }
+                });
             }
         }
     }
