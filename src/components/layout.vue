@@ -149,8 +149,8 @@
                             })
                             .then(response => {
                                 this.loading = false;
-                                const d = response.data.data;
-                                console.log(d);
+//                                const d = response.data.data;
+//                                console.log(d);
                                 this.$message({
                                     message: response.data.status.message,
                                     type: 'success',

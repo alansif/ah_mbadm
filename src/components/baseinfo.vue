@@ -1,7 +1,7 @@
 <template>
     <transition name="el-zoom-in-top">
         <div v-show="showme">
-            <el-form :inline="true" :model="form1" label-width="80px" class="bif1">
+            <el-form :inline="true" :model="form1" ref="form1" label-width="80px" class="bif1">
                 <el-form-item label="卡号">
                     <el-input v-model="form1.cardnumber" readonly="true" style="width: 110px"></el-input>
                 </el-form-item>
@@ -34,6 +34,9 @@
                             end-placeholder="结束日期">
                     </el-date-picker>
                 </el-form-item>
+                <el-form-item label="最优价格">
+                    <el-input v-model="form1.price" readonly="true" style="width: 110px"></el-input>
+                </el-form-item>
                 <el-form-item label="卡余额">
                     <el-input v-model="form1.balance" readonly="true" style="width: 110px"></el-input>
                 </el-form-item>
@@ -61,6 +64,7 @@
 </template>
 
 <script>
+    import {restbase,reserr} from '../restapi.js';
     export default {
         props:{
             showme: {
@@ -71,21 +75,59 @@
         data() {
             return {
                 form1: {
-                    cardnumber: '123456',
-                    idnumber: '110101190010105678',
-                    name: '哈哈哈哈',
-                    sex: '男',
-                    mobile: '13800138000',
+                    cardnumber: '',
+                    idnumber: '',
+                    name: '',
+                    sex: '',
+                    mobile: '',
                     address: '',
-                    issuedate: '2099-10-10',
-                    period:['2022-02-22','2033-01-11'],
-                    times: 3,
-                    balance: 9999,
-                    coupon: 6666,
-                    advisor: '健康顾问',
-                    branch: '开卡门店',
-                    altphone: '13800138999'
+                    issuedate: '',
+                    period:['',''],
+                    times: '',
+                    balance: '',
+                    coupon: '',
+                    advisor: '',
+                    branch: '',
+                    altphone: '',
+                    price: ''
                 }
+            }
+        },
+        methods: {
+            query(idnum, cb) {
+                this.$axios.get(restbase() + 'card',{
+                        params:{
+                            id:idnum
+                        }
+                    })
+                    .then(response => {
+                        const d = response.data.data;
+                        this.form1.cardnumber = d['卡号'];
+                        this.form1.idnumber = d['身份证号码'];
+                        this.form1.name = d['姓名'];
+                        this.form1.sex = d['性别'];
+                        this.form1.mobile = d['联系电话'];
+                        this.form1.address = d['通讯地址'];
+                        this.form1.issuedate = moment(d['签发日期']).format('YYYY-MM-DD');
+                        this.form1.times = d['益生套餐'] - d['已用益生套餐'];
+                        this.form1.balance = d['账户余额'];
+                        this.form1.coupon = d['赠券余额'];
+                        this.form1.advisor = d['健康顾问'];
+                        this.form1.branch = d['发卡门店'];
+                        this.form1.altphone = d['定制电话'];
+                        this.form1.price = d['首次采购价格'];
+                        const p0 = moment(d['有效期起始']).format('YYYY-MM-DD');
+                        const p1 = moment(d['有效期截止']).format('YYYY-MM-DD');
+                        this.form1.period = [p0,p1];
+                        cb(undefined, d);
+                    })
+                    .catch(error => {
+                        if (error) {
+                            console.dir(error);
+                            this.$message.error(reserr(error));
+                            cb(error, undefined);
+                        }
+                    });
             }
         }
     }
