@@ -2,6 +2,7 @@
     <div id="app">
         <el-container style="position: absolute;top:0;bottom: 0;left: 0;width: 100%;">
             <el-header>
+                <div style="float:left; color: white;line-height: 60px; height:60px;">华兆会员系统</div>
                 <el-menu mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" style="float: right">
                     <el-menu-item index="/">{{realname}}</el-menu-item>
                     <el-submenu index="2" v-show="false">
