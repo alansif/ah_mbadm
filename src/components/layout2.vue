@@ -26,7 +26,6 @@
             <el-form-item label="最优价格" prop="price"
                           :rules="[{required:true,message:'请填写最优价格'},{type:'number',message:'价格必须为数字'}]">
                 <el-input
-                        placeholder="每年价格"
                         v-model.number="form1.price"
                         style="width: 90px"
                         onkeypress="return (event.charCode===46) || (event.charCode>=48 && event.charCode <=57)">
@@ -58,7 +57,7 @@
         },
         mounted() {
             let d0 = moment().format('YYYY-MM-DD');
-            let d1 = moment().add('3','years').format('YYYY-MM-DD');
+            let d1 = moment().add('3','years').subtract('1','days').format('YYYY-MM-DD');
             this.form1.period = [d0, d1];
         },
         methods: {

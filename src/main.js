@@ -1,3 +1,6 @@
+import promise from 'es6-promise';
+promise.polyfill();
+
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import ElementUI from 'element-ui'

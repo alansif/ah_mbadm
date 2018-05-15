@@ -42,7 +42,6 @@
                 :rules="[{required:true,message:'请填写最优价格'},{type:'number',message:'价格必须为数字'}]">
                 <el-input
                         v-model.number="form2.price"
-                        placeholder="每年价格"
                         style="width: 90px"
                         onkeypress="return (event.charCode===46) || (event.charCode>=48 && event.charCode <=57)">
                 </el-input>
@@ -57,7 +56,7 @@
                 <el-input v-model="form2.commentinfo" style="width: 505px"></el-input>
             </el-form-item>
             <div style="width:100%;text-align: center;">
-                <el-button type="primary" :loading="loading" @click="newuser">开卡</el-button>
+                <el-button type="primary" :disabled="!cando" :loading="loading" @click="newuser">开卡</el-button>
             </div>
         </el-form>
     </div>
@@ -83,12 +82,13 @@
                     altphone: '',
                     commentinfo: ''
                 },
+                cando: false,
                 loading: false
             }
         },
         mounted() {
             let d0 = moment().format('YYYY-MM-DD');
-            let d1 = moment().add('3','years').format('YYYY-MM-DD');
+            let d1 = moment().add('3','years').subtract('1','days').format('YYYY-MM-DD');
             this.form2.period = [d0, d1];
         },
         methods: {
@@ -97,8 +97,10 @@
                 this.form1.sex = '';
                 this.form1.mobile = '';
                 this.form1.address = '';
+                this.cando = false;
             },
             dosearch0() {
+                this.cando = false;
                 this.form1.idnumber = this.form1.idnumber.replace(/^\s+/, "").replace(/\s+$/, "");
                 if (this.form1.idnumber.length !== 18) {
                     this.$message.error('证件号码格式错误');
@@ -111,6 +113,7 @@
                         this.form1.sex = d.Sex;
                         this.form1.mobile = d.Mobile;
                         this.form1.address = d.Address;
+                        this.cando = true;
                     })
                     .catch(error => {
                         if (error) {
@@ -123,6 +126,11 @@
                 this.form1.idnumber = this.form1.idnumber.replace(/^\s+/, "").replace(/\s+$/, "");
                 if (this.form1.idnumber.length !== 18) {
                     this.$message.error('证件号码格式错误');
+                    return;
+                }
+                this.form1.address = this.form1.address.replace(/^\s+/, "").replace(/\s+$/, "");
+                if (this.form1.address.length === 0) {
+                    this.$message.error('地址不能为空，请在CRM中填写地址');
                     return;
                 }
                 this.form1.name = this.form1.name.replace(/^\s+/, "").replace(/\s+$/, "");
@@ -149,8 +157,6 @@
                             })
                             .then(response => {
                                 this.loading = false;
-//                                const d = response.data.data;
-//                                console.log(d);
                                 this.$message({
                                     message: response.data.status.message,
                                     type: 'success',
