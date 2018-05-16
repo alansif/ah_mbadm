@@ -22,20 +22,25 @@
             </el-form-item>
         </el-form>
         <el-form :inline="true" ref="form2" :model="form2" label-width="80px" class="layout1f3">
-            <el-form-item label="会员期限">
-                <el-input v-model="form2.terms" readonly="true" style="width: 60px"></el-input>
+            <el-form-item label="会员年限">
+                <el-input v-model="form2.terms" readonly="true" style="width: 40px"></el-input>
             </el-form-item>
-            <el-form-item label="有效期">
+            <el-form-item label="有效期起">
                 <el-date-picker
-                        v-model="form2.period"
+                        v-model="form2.period0"
                         value-format="yyyy-MM-dd"
-                        type="daterange"
-                        :unlink-panels="true"
                         :clearable="false"
                         :editable="false"
-                        range-separator="至"
-                        start-placeholder="开始日期"
-                        end-placeholder="结束日期">
+                        style="width: 138px">
+                </el-date-picker>
+            </el-form-item>
+            <el-form-item label="有效期止">
+                <el-date-picker
+                        v-model="form2.period1"
+                        value-format="yyyy-MM-dd"
+                        :clearable="false"
+                        :editable="false"
+                        style="width: 137px">
                 </el-date-picker>
             </el-form-item>
             <el-form-item label="最优价格" prop="price"
@@ -75,8 +80,9 @@
                     address: ''
                 },
                 form2: {
-                    terms: '3年',
-                    period:['',''],
+                    terms: '3',
+                    period0: '',
+                    period1: '',
                     price: '',
                     advisor: '',
                     altphone: '',
@@ -87,9 +93,8 @@
             }
         },
         mounted() {
-            let d0 = moment().format('YYYY-MM-DD');
-            let d1 = moment().add('3','years').subtract('1','days').format('YYYY-MM-DD');
-            this.form2.period = [d0, d1];
+            this.form2.period0 = moment().format('YYYY-MM-DD');
+            this.form2.period1 = moment().add('3','years').subtract('1','days').format('YYYY-MM-DD');
         },
         methods: {
             clearinfo() {
@@ -133,9 +138,10 @@
                     this.$message.error('地址不能为空，请在CRM中填写地址');
                     return;
                 }
-                this.form1.name = this.form1.name.replace(/^\s+/, "").replace(/\s+$/, "");
-                if (this.form1.name.length === 0) {
-                    this.$message.error('需要姓名');
+                const d0 = moment(this.form2.period0);
+                const d1 = moment(this.form2.period1);
+                if (d0 >= d1) {
+                    this.$message.error('有效期起止范围错误');
                     return;
                 }
                 this.$refs["form2"].validate(valid => {
@@ -147,8 +153,8 @@
                                 sex:this.form1.sex,
                                 mobile:this.form1.mobile,
                                 address:this.form1.address,
-                                period0:this.form2.period[0],
-                                period1:this.form2.period[1],
+                                period0:this.form2.period0,
+                                period1:this.form2.period1,
                                 price:this.form2.price,
                                 advisor:this.form2.advisor,
                                 altphone:this.form2.altphone,

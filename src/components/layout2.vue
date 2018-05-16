@@ -10,17 +10,22 @@
             </el-form-item>
         </el-form>
         <el-form ref="form1" :model="form1" :inline="true" label-width="80px" class="layout2f2">
-            <el-form-item label="有效期" prop="period">
+            <el-form-item label="有效期起" prop="period0">
                 <el-date-picker
-                        v-model="form1.period"
+                        v-model="form1.period0"
                         value-format="yyyy-MM-dd"
-                        type="daterange"
-                        :unlink-panels="true"
                         :clearable="false"
                         :editable="false"
-                        range-separator="至"
-                        start-placeholder="开始日期"
-                        end-placeholder="结束日期">
+                        style="width: 140px">
+                </el-date-picker>
+            </el-form-item>
+            <el-form-item label="有效期止" prop="period1">
+                <el-date-picker
+                        v-model="form1.period1"
+                        value-format="yyyy-MM-dd"
+                        :clearable="false"
+                        :editable="false"
+                        style="width: 140px">
                 </el-date-picker>
             </el-form-item>
             <el-form-item label="最优价格" prop="price"
@@ -47,7 +52,8 @@
             return {
                 idnumber: '',
                 form1: {
-                    period:['',''],
+                    period0: '',
+                    period1: '',
                     price: 0,
                 },
                 showbaseinfo: false,
@@ -56,9 +62,8 @@
             }
         },
         mounted() {
-            let d0 = moment().format('YYYY-MM-DD');
-            let d1 = moment().add('3','years').subtract('1','days').format('YYYY-MM-DD');
-            this.form1.period = [d0, d1];
+            this.form1.period0 = moment().format('YYYY-MM-DD');
+            this.form1.period1 = moment().add('3','years').subtract('1','days').format('YYYY-MM-DD');
         },
         methods: {
             dosearch0() {
@@ -78,12 +83,18 @@
                 });
             },
             renew() {
+                const d0 = moment(this.form1.period0);
+                const d1 = moment(this.form1.period1);
+                if (d0 >= d1) {
+                    this.$message.error('有效期起止范围错误');
+                    return;
+                }
                 this.$refs["form1"].validate(valid => {
                     if (valid) {
                         this.loading = true;
                         this.$axios.post(restbase() + `card/${this.idnumber}/renew`,{
-                                period0: this.form1.period[0],
-                                period1: this.form1.period[1],
+                                period0: this.form1.period0,
+                                period1: this.form1.period1,
                                 price: this.form1.price,
                                 operator:this.$root.oprt
                             })
