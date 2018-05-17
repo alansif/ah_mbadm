@@ -76,30 +76,38 @@
                 });
             },
             changepd() {
+                const d0 = moment(this.form1.period0);
+                const d1 = moment(this.form1.period1);
+                if (d0 >= d1) {
+                    this.$message.error('有效期起止范围错误');
+                    return;
+                }
                 this.$refs["form1"].validate(valid => {
                     if (valid) {
                         this.loading = true;
                         this.$axios.post(restbase() + `card/${this.idnumber}/changeperiod`,{
+                            period0: this.form1.period0,
+                            period1: this.form1.period1,
                             comment: this.form1.comment,
                             operator:this.$root.oprt
                         })
-                            .then(response => {
-                                this.loading = false;
-                                this.showbaseinfo = false;
-                                this.cando = false;
-                                this.$message({
-                                    message: response.data.status.message,
-                                    type: 'success',
-                                    center: true
-                                });
-                            })
-                            .catch(error => {
-                                this.loading = false;
-                                if (error) {
-                                    console.dir(error);
-                                    this.$message.error(reserr(error));
-                                }
+                        .then(response => {
+                            this.loading = false;
+                            this.showbaseinfo = false;
+                            this.cando = false;
+                            this.$message({
+                                message: response.data.status.message,
+                                type: 'success',
+                                center: true
                             });
+                        })
+                        .catch(error => {
+                            this.loading = false;
+                            if (error) {
+                                console.dir(error);
+                                this.$message.error(reserr(error));
+                            }
+                        });
                     }
                 });
             }
