@@ -94,11 +94,6 @@
                     this.$message.error('证件号码格式错误');
                     return;
                 }
-                this.form1.address = this.form1.address.replace(/^\s+/, "").replace(/\s+$/, "");
-                if (this.form1.address.length === 0) {
-                    this.$message.error('地址不能为空，请在CRM中填写地址');
-                    return;
-                }
                 this.$axios.get(restbase() + `guest/${this.form1.idnumber}/info`)
                     .then(response => {
                         const d = response.data.data;
@@ -116,6 +111,11 @@
                     });
             },
             transfer() {
+                this.form1.address = this.form1.address.replace(/^\s+/, "").replace(/\s+$/, "");
+                if (this.form1.address.length === 0) {
+                    this.$message.error('地址不能为空，请在CRM中填写地址');
+                    return;
+                }
                 this.$refs["form1"].validate(valid => {
                     if (valid) {
                         this.loading = true;
