@@ -100,7 +100,7 @@
                 });
             },
             consume() {
-                if (form1.ctm+form1.adt+form1.oth === 0) {
+                if (this.form1.ctm + this.form1.adt + this.form1.oth === 0) {
                     this.$message.error('合计金额不能为0');
                     return;
                 }
