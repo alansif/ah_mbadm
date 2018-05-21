@@ -37,6 +37,7 @@
                         <el-menu-item index="/5"><i class="el-icon-sort"></i>转卡</el-menu-item>
                         <el-menu-item index="/6"><i class="el-icon-sold-out"></i>预存</el-menu-item>
                         <el-menu-item index="/7"><i class="el-icon-delete"></i>退卡</el-menu-item>
+                        <el-menu-item index="/9"><i class="el-icon-goods"></i>余额消费</el-menu-item>
                         <el-menu-item index="/8"><i class="el-icon-date"></i>修改效期</el-menu-item>
                     </el-menu>
                 </el-aside>

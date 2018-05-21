@@ -41,7 +41,7 @@
                     <el-input v-model="form1.balance" readonly="true" style="width: 110px"></el-input>
                 </el-form-item>
                 <el-form-item label="赠券余额">
-                    <el-input v-model="form1.coupon" readonly="true" style="width: 110px"></el-input>
+                    <el-input v-model="form1.coupon" readonly="true" style="width: 120px"></el-input>
                 </el-form-item>
                 <el-form-item label="电话">
                     <el-input v-model="form1.mobile" readonly="true" style="width: 160px"></el-input>
@@ -52,11 +52,14 @@
                 <el-form-item label="地址">
                     <el-input v-model="form1.address" readonly="true" style="width: 550px"></el-input>
                 </el-form-item>
+                <el-form-item label="电子邮件">
+                    <el-input v-model="form1.email" readonly="true" style="width: 200px"></el-input>
+                </el-form-item>
                 <el-form-item label="健康顾问">
-                    <el-input v-model="form1.advisor" readonly="true" style="width: 110px"></el-input>
+                    <el-input v-model="form1.advisor" readonly="true" style="width: 85px"></el-input>
                 </el-form-item>
                 <el-form-item label="开卡门店">
-                    <el-input v-model="form1.branch" readonly="true" style="width: 110px"></el-input>
+                    <el-input v-model="form1.branch" readonly="true" style="width: 75px"></el-input>
                 </el-form-item>
             </el-form>
         </div>
@@ -89,7 +92,8 @@
                     advisor: '',
                     branch: '',
                     altphone: '',
-                    price: ''
+                    price: '',
+                    email: ''
                 }
             }
         },
@@ -116,6 +120,7 @@
                         this.form1.branch = d['发卡门店'];
                         this.form1.altphone = d['定制电话'];
                         this.form1.price = d['首次采购价格'];
+                        this.form1.email = d['电子邮件'];
                         const p0 = moment(d['有效期起始']).format('YYYY-MM-DD');
                         const p1 = moment(d['有效期截止']).format('YYYY-MM-DD');
                         this.form1.period = [p0,p1];

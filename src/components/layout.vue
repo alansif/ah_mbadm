@@ -20,6 +20,9 @@
             <el-form-item label="地址">
                 <el-input v-model="form1.address" readonly="true" style="width: 525px"></el-input>
             </el-form-item>
+            <el-form-item label="邮件">
+                <el-input v-model="form1.email" readonly="true" style="width: 200px"></el-input>
+            </el-form-item>
         </el-form>
         <el-form :inline="true" ref="form2" :model="form2" label-width="80px" class="layout1f3">
             <el-form-item label="会员年限">
@@ -77,7 +80,8 @@
                     name: '',
                     sex: '',
                     mobile: '',
-                    address: ''
+                    address: '',
+                    email: ''
                 },
                 form2: {
                     terms: '3',
@@ -102,6 +106,7 @@
                 this.form1.sex = '';
                 this.form1.mobile = '';
                 this.form1.address = '';
+                this.form1.email = '';
                 this.cando = false;
             },
             dosearch0() {
@@ -118,6 +123,7 @@
                         this.form1.sex = d.Sex;
                         this.form1.mobile = d.Mobile;
                         this.form1.address = d.Address;
+                        this.form1.email = d.Email;
                         this.cando = true;
                     })
                     .catch(error => {
@@ -153,6 +159,7 @@
                                 sex:this.form1.sex,
                                 mobile:this.form1.mobile,
                                 address:this.form1.address,
+                                email: this.form1.email,
                                 period0:this.form2.period0,
                                 period1:this.form2.period1,
                                 price:this.form2.price,
@@ -186,9 +193,10 @@
 <style>
     .layout1f1 {
         width: 600px;
-        height: 170px;
         background-color: white;
-        padding: 20px;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
         margin-bottom: 12px;
     }
     #idinput {

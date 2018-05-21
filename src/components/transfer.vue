@@ -30,6 +30,9 @@
             <el-form-item label="地址">
                 <el-input v-model="form1.address" readonly="true" style="width: 550px"></el-input>
             </el-form-item>
+            <el-form-item label="邮件">
+                <el-input v-model="form1.email" readonly="true" style="width: 280px"></el-input>
+            </el-form-item>
             <el-form-item label="定制电话">
                 <el-input id="tfaltp" v-model="form1.altphone" style="width: 180px"></el-input>
             </el-form-item>
@@ -62,6 +65,7 @@
                     sex: '',
                     mobile: '',
                     address: '',
+                    email: '',
                     altphone: '',
                     fee: 100
                 },
@@ -101,6 +105,7 @@
                         this.form1.sex = d.Sex;
                         this.form1.mobile = d.Mobile;
                         this.form1.address = d.Address;
+                        this.form1.email = d.Email;
                         this.cando1 = true;
                     })
                     .catch(error => {
