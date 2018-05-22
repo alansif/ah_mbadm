@@ -16,7 +16,8 @@
                         value-format="yyyy-MM-dd"
                         :clearable="false"
                         :editable="false"
-                        style="width: 140px">
+                        @change="p0changed"
+                        style="width: 190px">
                 </el-date-picker>
             </el-form-item>
             <el-form-item label="有效期止" prop="period1">
@@ -25,14 +26,18 @@
                         value-format="yyyy-MM-dd"
                         :clearable="false"
                         :editable="false"
-                        style="width: 140px">
+                        style="width: 190px">
                 </el-date-picker>
+            </el-form-item>
+            <el-form-item label="续卡方式" prop="mode" style="width:500px;">
+                <el-radio v-model="form1.mode" label="连续续卡">连续续卡</el-radio>
+                <el-radio v-model="form1.mode" label="间断续卡">间断续卡</el-radio>
             </el-form-item>
             <el-form-item label="最优价格" prop="price"
                           :rules="[{required:true,message:'请填写最优价格'},{type:'number',message:'价格必须为数字'}]">
                 <el-input
                         v-model.number="form1.price"
-                        style="width: 90px"
+                        style="width: 120px"
                         onkeypress="return (event.charCode===46) || (event.charCode>=48 && event.charCode <=57)">
                 </el-input>
             </el-form-item>
@@ -54,6 +59,7 @@
                 form1: {
                     period0: '',
                     period1: '',
+                    mode: '连续续卡',
                     price: 0,
                 },
                 showbaseinfo: false,
@@ -79,6 +85,10 @@
 //                        this.form1.price = data['首次采购价格'];
                         this.showbaseinfo = true;
                         this.cando = true;
+                        this.baseinfodata = data;
+                        if (moment(data['有效期截止']).add('1', 'days') < moment()) {
+                            this.form1.mode = '间断续卡';
+                        }
                     }
                 });
             },
@@ -95,6 +105,7 @@
                         this.$axios.post(restbase() + `card/${this.idnumber}/renew`,{
                                 period0: this.form1.period0,
                                 period1: this.form1.period1,
+                                mode: this.form1.mode,
                                 price: this.form1.price,
                                 operator:this.$root.oprt
                             })
@@ -117,6 +128,15 @@
                             });
                     }
                 });
+            },
+            p0changed() {
+                if (!this.baseinfodata || !this.baseinfodata['有效期截止'])
+                    return;
+                if (moment(this.form1.period0) > moment(this.baseinfodata['有效期截止']).add('1', 'days')) {
+                    this.form1.mode = '间断续卡';
+                } else {
+                    this.form1.mode = '连续续卡';
+                }
             }
         },
         components:{
