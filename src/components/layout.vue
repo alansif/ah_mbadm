@@ -21,7 +21,7 @@
                 <el-input v-model="form1.address" readonly="true" style="width: 525px"></el-input>
             </el-form-item>
             <el-form-item label="邮件">
-                <el-input v-model="form1.email" readonly="true" style="width: 200px"></el-input>
+                <el-input v-model="form1.email" readonly="true" style="width: 240px"></el-input>
             </el-form-item>
         </el-form>
         <el-form :inline="true" ref="form2" :model="form2" label-width="80px" class="layout1f3">

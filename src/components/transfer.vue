@@ -31,10 +31,10 @@
                 <el-input v-model="form1.address" readonly="true" style="width: 550px"></el-input>
             </el-form-item>
             <el-form-item label="邮件">
-                <el-input v-model="form1.email" readonly="true" style="width: 280px"></el-input>
+                <el-input v-model="form1.email" readonly="true" style="width: 240px"></el-input>
             </el-form-item>
             <el-form-item label="定制电话">
-                <el-input id="tfaltp" v-model="form1.altphone" style="width: 180px"></el-input>
+                <el-input id="tfaltp" v-model="form1.altphone" style="width: 240px"></el-input>
             </el-form-item>
             <el-form-item label="手续费" prop="fee"
                           :rules="[{required:true,message:'请填写手续费'},{type:'number',message:'必须为数字'}]">

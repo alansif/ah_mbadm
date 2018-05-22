@@ -44,22 +44,22 @@
                     <el-input v-model="form1.coupon" readonly="true" style="width: 120px"></el-input>
                 </el-form-item>
                 <el-form-item label="电话">
-                    <el-input v-model="form1.mobile" readonly="true" style="width: 160px"></el-input>
+                    <el-input v-model="form1.mobile" readonly="true" style="width: 135px"></el-input>
                 </el-form-item>
                 <el-form-item label="定制电话">
-                    <el-input v-model="form1.altphone" readonly="true" style="width: 160px"></el-input>
+                    <el-input v-model="form1.altphone" readonly="true" style="width: 135px"></el-input>
+                </el-form-item>
+                <el-form-item label="健康顾问">
+                    <el-input v-model="form1.advisor" readonly="true" style="width: 90px"></el-input>
                 </el-form-item>
                 <el-form-item label="地址">
                     <el-input v-model="form1.address" readonly="true" style="width: 550px"></el-input>
                 </el-form-item>
                 <el-form-item label="电子邮件">
-                    <el-input v-model="form1.email" readonly="true" style="width: 200px"></el-input>
-                </el-form-item>
-                <el-form-item label="健康顾问">
-                    <el-input v-model="form1.advisor" readonly="true" style="width: 85px"></el-input>
+                    <el-input v-model="form1.email" readonly="true" style="width: 240px"></el-input>
                 </el-form-item>
                 <el-form-item label="开卡门店">
-                    <el-input v-model="form1.branch" readonly="true" style="width: 75px"></el-input>
+                    <el-input v-model="form1.branch" readonly="true" style="width: 90px"></el-input>
                 </el-form-item>
             </el-form>
         </div>
