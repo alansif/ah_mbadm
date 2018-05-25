@@ -14,7 +14,7 @@
                 <el-form-item label="性别">
                     <el-input v-model="form1.sex" readonly="true" style="width: 60px"></el-input>
                 </el-form-item>
-                <el-form-item label="套餐次数">
+                <el-form-item label="剩余次数">
                     <el-input v-model="form1.times" readonly="true" style="width: 50px"></el-input>
                 </el-form-item>
                 <el-form-item label="签发日期">
