@@ -63,9 +63,6 @@
             <el-form-item label="定制电话">
                 <el-input v-model="form2.altphone" style="width: 135px"></el-input>
             </el-form-item>
-            <el-form-item label="备注信息">
-                <el-input v-model="form2.commentinfo" style="width: 505px"></el-input>
-            </el-form-item>
             <div style="width:100%;text-align: center;">
                 <el-button type="primary" :disabled="!cando" :loading="loading" @click="newuser">开卡</el-button>
             </div>
@@ -93,8 +90,7 @@
                     period1: '',
                     price: '',
                     advisor: '',
-                    altphone: '',
-                    commentinfo: ''
+                    altphone: ''
                 },
                 cando: false,
                 loading: false
@@ -130,7 +126,6 @@
                         this.form1.address = d.Address;
                         this.form1.email = d.Email;
                         this.form1.remarks = d.Remarks;
-                        this.form2.commentinfo = this.form1.remarks;
                         this.cando = true;
                     })
                     .catch(error => {
@@ -172,7 +167,7 @@
                                 price:this.form2.price,
                                 advisor:this.form2.advisor,
                                 altphone:this.form2.altphone,
-                                comment:this.form2.commentinfo,
+                                comment:this.form1.remarks,
                                 operator:this.$root.oprt
                             })
                             .then(response => {
