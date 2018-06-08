@@ -23,6 +23,9 @@
             <el-form-item label="邮件">
                 <el-input v-model="form1.email" readonly="true" style="width: 240px"></el-input>
             </el-form-item>
+            <el-form-item label="备注">
+                <el-input v-model="form1.remarks" readonly="true" style="width: 525px"></el-input>
+            </el-form-item>
         </el-form>
         <el-form :inline="true" ref="form2" :model="form2" label-width="80px" class="layout1f3">
             <el-form-item label="会员年限">
@@ -81,7 +84,8 @@
                     sex: '',
                     mobile: '',
                     address: '',
-                    email: ''
+                    email: '',
+                    remarks: ''
                 },
                 form2: {
                     terms: '3',
@@ -107,6 +111,7 @@
                 this.form1.mobile = '';
                 this.form1.address = '';
                 this.form1.email = '';
+                this.form1.remarks = '';
                 this.cando = false;
             },
             dosearch0() {
@@ -124,6 +129,8 @@
                         this.form1.mobile = d.Mobile;
                         this.form1.address = d.Address;
                         this.form1.email = d.Email;
+                        this.form1.remarks = d.Remarks;
+                        this.form2.commentinfo = this.form1.remarks;
                         this.cando = true;
                     })
                     .catch(error => {
