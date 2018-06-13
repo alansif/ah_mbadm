@@ -32,13 +32,13 @@
                                 <el-menu-item index="1-4-1">选项1</el-menu-item>
                             </el-submenu>
                         </el-submenu>
-                        <el-menu-item index="/3"><i class="el-icon-menu"></i>开卡</el-menu-item>
-                        <el-menu-item index="/4"><i class="el-icon-d-arrow-right"></i>续卡</el-menu-item>
-                        <el-menu-item index="/5"><i class="el-icon-sort"></i>转卡</el-menu-item>
-                        <el-menu-item index="/6"><i class="el-icon-sold-out"></i>预存</el-menu-item>
-                        <el-menu-item index="/7"><i class="el-icon-delete"></i>退卡</el-menu-item>
-                        <el-menu-item index="/9"><i class="el-icon-goods"></i>余额消费</el-menu-item>
-                        <el-menu-item index="/8"><i class="el-icon-date"></i>修改效期</el-menu-item>
+                        <el-menu-item index="/3" :disabled="dis03"><i class="el-icon-menu"></i>开卡</el-menu-item>
+                        <el-menu-item index="/4" :disabled="dis04"><i class="el-icon-d-arrow-right"></i>续卡</el-menu-item>
+                        <el-menu-item index="/5" :disabled="dis05"><i class="el-icon-sort"></i>转卡</el-menu-item>
+                        <el-menu-item index="/6" :disabled="dis06"><i class="el-icon-sold-out"></i>预存</el-menu-item>
+                        <el-menu-item index="/7" :disabled="dis07"><i class="el-icon-delete"></i>退卡</el-menu-item>
+                        <el-menu-item index="/9" :disabled="dis09"><i class="el-icon-goods"></i>余额消费</el-menu-item>
+                        <el-menu-item index="/8" :disabled="dis08"><i class="el-icon-date"></i>修改效期</el-menu-item>
                     </el-menu>
                 </el-aside>
                 <el-main>
@@ -79,8 +79,18 @@
                 loginform: {
                     username: '',
                     password: '',
-                }
+                },
+                privileges: []
             }
+        },
+        computed: {
+            dis03: function() { return (this.privileges !== '*') && (this.privileges.indexOf('发卡建档') === -1) },
+            dis04: function() { return (this.privileges !== '*') && (this.privileges.indexOf('会员续卡') === -1) },
+            dis05: function() { return (this.privileges !== '*') && (this.privileges.indexOf('会员转卡') === -1) },
+            dis06: function() { return (this.privileges !== '*') && (this.privileges.indexOf('账户预存') === -1) },
+            dis07: function() { return (this.privileges !== '*') && (this.privileges.indexOf('会员注销') === -1) },
+            dis09: function() { return (this.privileges !== '*') && (this.privileges.indexOf('日常体检') === -1) },
+            dis08: function() { return (this.privileges !== '*') && (this.privileges.indexOf('修改卡有效期') === -1) }
         },
         mounted() {
         },
@@ -94,6 +104,11 @@
                                 this.realname = response.data.data['username'];
                                 this.$root.oprt = this.realname;
                                 this.dialogVisible = false;
+                                if (this.realname === '管理员') {
+                                    this.privileges = '*';
+                                } else {
+                                    this.privileges = response.data.data['privileges'];
+                                }
                             })
                             .catch(error => {
                                 this.loading = false;
