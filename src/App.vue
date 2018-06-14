@@ -39,6 +39,7 @@
                         <el-menu-item index="/7" :disabled="dis07"><i class="el-icon-delete"></i>退卡</el-menu-item>
                         <el-menu-item index="/9" :disabled="dis09"><i class="el-icon-goods"></i>余额消费</el-menu-item>
                         <el-menu-item index="/8" :disabled="dis08"><i class="el-icon-date"></i>修改效期</el-menu-item>
+                        <el-menu-item index="/2" :disabled="dis02"><i class="el-icon-search"></i>客户查询</el-menu-item>
                     </el-menu>
                 </el-aside>
                 <el-main>
@@ -84,6 +85,7 @@
             }
         },
         computed: {
+            dis02: function() { return false },
             dis03: function() { return (this.privileges !== '*') && (this.privileges.indexOf('发卡建档') === -1) },
             dis04: function() { return (this.privileges !== '*') && (this.privileges.indexOf('会员续卡') === -1) },
             dis05: function() { return (this.privileges !== '*') && (this.privileges.indexOf('会员转卡') === -1) },
