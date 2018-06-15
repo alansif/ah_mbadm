@@ -53,7 +53,7 @@
 
 <style>
     .q1f1 {
-        width: 380px;
+        width: 400px;
         background-color: white;
         padding: 20px 30px 2px 8px;
         margin-bottom: 12px;

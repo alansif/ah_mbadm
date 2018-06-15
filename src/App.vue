@@ -39,7 +39,14 @@
                         <el-menu-item index="/7" :disabled="dis07"><i class="el-icon-delete"></i>退卡</el-menu-item>
                         <el-menu-item index="/9" :disabled="dis09"><i class="el-icon-goods"></i>余额消费</el-menu-item>
                         <el-menu-item index="/8" :disabled="dis08"><i class="el-icon-date"></i>修改效期</el-menu-item>
-                        <el-menu-item index="/2" :disabled="dis02"><i class="el-icon-search"></i>客户查询</el-menu-item>
+                        <el-submenu index="">
+                            <template slot="title">
+                                <i class="el-icon-search"></i>
+                                <span slot="title">查询</span>
+                            </template>
+                            <el-menu-item index="/2" :disabled="dis02">客户查询</el-menu-item>
+                            <el-menu-item index="/a" :disabled="dis02">有效期查询</el-menu-item>
+                        </el-submenu>
                     </el-menu>
                 </el-aside>
                 <el-main>
@@ -71,7 +78,9 @@
 
 <script>
     import {restbase} from './restapi.js';
+    import ElSubmenu from "../node_modules/element-ui/packages/menu/src/submenu.vue";
     export default {
+        components: {ElSubmenu},
         data() {
             return {
                 dialogVisible: true,
