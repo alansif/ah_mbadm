@@ -19,7 +19,6 @@
         data() {
             return {
                 idnumber: '',
-                show1: true,
                 tbls:[
                     {dbt:'Cardbaseinfo', label:'基本信息'},
                     {dbt:'RegCardinfo', label:'开卡记录'},

@@ -55,6 +55,9 @@
                             }
                             this.tableData = d;
                             this.show = true;
+                        } else {
+                            this.tableData = [];
+                            this.show = false;
                         }
                     })
                     .catch(error => {
