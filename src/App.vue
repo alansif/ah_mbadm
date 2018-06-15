@@ -78,9 +78,7 @@
 
 <script>
     import {restbase} from './restapi.js';
-    import ElSubmenu from "../node_modules/element-ui/packages/menu/src/submenu.vue";
     export default {
-        components: {ElSubmenu},
         data() {
             return {
                 dialogVisible: true,
