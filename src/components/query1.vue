@@ -8,7 +8,7 @@
                 </el-input>
             </el-form-item>
         </el-form>
-        <qtable v-for="(t, index) in tbls" ref="qt"></qtable>
+        <qtable v-for="t in tbls" :key="t.dbt" ref="qt"></qtable>
     </div>
 </template>
 
@@ -27,7 +27,7 @@
                     {dbt:'Moneydetail', label:'收费记录'},
                     {dbt:'ConsumeRecord', label:'消费记录'},
                     {dbt:'ConsumeRecordByCardMoney', label:'余额消费记录'},
-                    {dbt:'CardModifyinfo', label:'修改信息记录'},
+                    {dbt:'ChangeInfo', label:'修改信息记录'},
                     {dbt:'ChangePeriod', label:'修改有效期记录'},
                     {dbt:'ReturnCardinfo', label:'退卡记录'}
                 ]

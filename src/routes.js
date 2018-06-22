@@ -7,6 +7,7 @@ import transfer from './components/transfer.vue'
 import deposit from './components/deposit.vue'
 import consume from './components/consume.vue'
 import refund from './components/refund.vue'
+import changeinfo from './components/changeinfo.vue'
 import changeperiod from './components/changeperiod.vue'
 
 export default [
@@ -18,6 +19,7 @@ export default [
     { path:'/6', component:deposit },
     { path:'/9', component:consume },
     { path:'/7', component:refund },
+    { path:'/b', component:changeinfo },
     { path:'/8', component:changeperiod },
     { path:'/a', component:query2 }
 ]

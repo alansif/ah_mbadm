@@ -38,6 +38,7 @@
                         <el-menu-item index="/6" :disabled="dis06"><i class="el-icon-sold-out"></i>预存</el-menu-item>
                         <el-menu-item index="/7" :disabled="dis07"><i class="el-icon-delete"></i>退卡</el-menu-item>
                         <el-menu-item index="/9" :disabled="dis09"><i class="el-icon-goods"></i>余额消费</el-menu-item>
+                        <el-menu-item index="/b" :disabled="dis0b"><i class="el-icon-date"></i>修改信息</el-menu-item>
                         <el-menu-item index="/8" :disabled="dis08"><i class="el-icon-date"></i>修改效期</el-menu-item>
                         <el-submenu index="">
                             <template slot="title">
@@ -99,6 +100,7 @@
             dis06: function() { return (this.privileges !== '*') && (this.privileges.indexOf('账户预存') === -1) },
             dis07: function() { return (this.privileges !== '*') && (this.privileges.indexOf('会员注销') === -1) },
             dis09: function() { return (this.privileges !== '*') && (this.privileges.indexOf('日常体检') === -1) },
+            dis0b: function() { return (this.privileges !== '*') && (this.privileges.indexOf('修改卡信息') === -1) },
             dis08: function() { return (this.privileges !== '*') && (this.privileges.indexOf('修改卡有效期') === -1) }
         },
         mounted() {

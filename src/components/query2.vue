@@ -33,7 +33,7 @@
                         style="width: 140px">
                 </el-date-picker>
             </el-form-item>
-            <el-button type="primary" :loading="loading" @click="doquery">查询</el-button>
+            <el-button type="primary" :loading="loading" @click="doquery" style="width: 100px">查询</el-button>
         </el-form>
         <qtable ref="qtr2"></qtable>
     </div>
@@ -83,7 +83,7 @@
 
 <style>
     .q2f1{
-        width: 900px;
+        width: 930px;
         background-color: white;
         padding: 20px 20px 0 20px;
         margin-bottom: 8px;
