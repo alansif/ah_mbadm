@@ -1,6 +1,7 @@
 import home from './components/home.vue'
 import query1 from './components/query1.vue'
 import query2 from './components/query2.vue'
+import query3 from './components/query3.vue'
 import layout from './components/layout.vue'
 import layout2 from './components/layout2.vue'
 import transfer from './components/transfer.vue'
@@ -21,5 +22,6 @@ export default [
     { path:'/7', component:refund },
     { path:'/b', component:changeinfo },
     { path:'/8', component:changeperiod },
+    { path:'/c', component:query3 },
     { path:'/a', component:query2 }
 ]

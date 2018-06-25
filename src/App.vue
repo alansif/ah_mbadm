@@ -47,6 +47,7 @@
                             </template>
                             <el-menu-item index="/2" :disabled="dis02">客户查询</el-menu-item>
                             <el-menu-item index="/a" :disabled="dis02">有效期查询</el-menu-item>
+                            <el-menu-item index="/c" :disabled="dis02">证件查询</el-menu-item>
                         </el-submenu>
                     </el-menu>
                 </el-aside>
