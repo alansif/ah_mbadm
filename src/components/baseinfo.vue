@@ -99,9 +99,13 @@
         },
         methods: {
             query(idnum, cb) {
+                this.queryall(idnum, undefined, cb);
+            },
+            queryall(idnum, all, cb) {
                 this.$axios.get(restbase() + 'card',{
                         params:{
-                            id:idnum
+                            id:idnum,
+                            all:all
                         }
                     })
                     .then(response => {

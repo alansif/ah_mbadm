@@ -80,7 +80,7 @@
                     this.$message.error('证件号码格式错误');
                     return;
                 }
-                this.$refs['bic'].query(this.idnumber, (err, data) => {
+                this.$refs['bic'].queryall(this.idnumber, true, (err, data) => {
                     if (!err) {
 //                        this.form1.price = data['首次采购价格'];
                         this.showbaseinfo = true;
