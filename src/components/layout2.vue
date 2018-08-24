@@ -8,6 +8,9 @@
                     <el-button slot="append" icon="el-icon-search" @click="dosearch0"></el-button>
                 </el-input>
             </el-form-item>
+            <el-form-item label="备注">
+                <el-input id="idcomment" v-model="comment" readonly="true" style="width: 560px"></el-input>
+            </el-form-item>
         </el-form>
         <el-form ref="form1" :model="form1" :inline="true" label-width="80px" class="layout2f2">
             <el-form-item label="有效期起" prop="period0">
@@ -56,6 +59,7 @@
         data() {
             return {
                 idnumber: '',
+                comment: '',
                 form1: {
                     period0: '',
                     period1: '',
@@ -83,6 +87,7 @@
                 this.$refs['bic'].queryall(this.idnumber, true, (err, data) => {
                     if (!err) {
 //                        this.form1.price = data['首次采购价格'];
+                        this.comment = data['备注'];
                         this.showbaseinfo = true;
                         this.cando = true;
                         this.baseinfodata = data;
@@ -148,10 +153,12 @@
 <style>
     .layout2f1 {
         width: 640px;
-        height: 44px;
         background-color: white;
         padding: 20px 30px 20px 20px;
         margin-bottom: 12px;
+    }
+    #idcomment.el-input__inner{
+        background-color: #eee;
     }
     .layout2f2 {
         width: 650px;
