@@ -1,9 +1,9 @@
 <template>
     <div>
-        <el-form :inline="true" label-width="80px" @submit.native.prevent class="q2f1">
-            <el-form-item label="有效期起">
+        <el-form :inline="true" label-width="80px" @submit.native.prevent class="r2f1">
+            <el-form-item label="时间段起">
                 <el-date-picker
-                        v-model="from0"
+                        v-model="fromdate"
                         value-format="yyyy-MM-dd"
                         :editable="false"
                         style="width: 140px">
@@ -11,34 +11,36 @@
             </el-form-item>
             <el-form-item label="至" label-width="22px">
                 <el-date-picker
-                        v-model="from1"
+                        v-model="todate"
                         value-format="yyyy-MM-dd"
                         :editable="false"
                         style="width: 140px">
                 </el-date-picker>
             </el-form-item>
-            <el-form-item label="有效期止">
-                <el-date-picker
-                        v-model="to0"
-                        value-format="yyyy-MM-dd"
-                        :editable="false"
-                        style="width: 140px">
-                </el-date-picker>
+            <el-form-item label="项目名称">
+                <el-select v-model="itemname" style="width:110px">
+                    <el-option value="*"></el-option>
+                    <el-option value="益生套餐"></el-option>
+                    <el-option value="加项费"></el-option>
+                    <el-option value="定制费"></el-option>
+                    <el-option value="其他"></el-option>
+                </el-select>
             </el-form-item>
-            <el-form-item label="至" label-width="22px">
-                <el-date-picker
-                        v-model="to1"
-                        value-format="yyyy-MM-dd"
-                        :editable="false"
-                        style="width: 140px">
-                </el-date-picker>
+            <el-form-item label="体检门店">
+                <el-select v-model="branch" style="width:110px">
+                    <el-option value="*"></el-option>
+                    <el-option value="东直门"></el-option>
+                    <el-option value="西直门"></el-option>
+                    <el-option value="总部"></el-option>
+                    <el-option value="总店"></el-option>
+                </el-select>
             </el-form-item>
             <div style="text-align: center">
                 <el-button type="primary" :loading="loading" @click="doquery" style="width: 160px">查询</el-button>
                 <el-button @click="exportfile" :disabled="restbl.length === 0" style="width: 160px">导出{{restbl.length}}项</el-button>
             </div>
         </el-form>
-        <qtable ref="qtr2"></qtable>
+        <qtable ref="qt"></qtable>
     </div>
 </template>
 
@@ -50,10 +52,10 @@
     export default {
         data() {
             return {
-                from0: '',
-                from1: '',
-                to0: '',
-                to1: '',
+                fromdate: '',
+                todate: '',
+                itemname: '*',
+                branch: '*',
                 loading: false,
                 restbl: []
             }
@@ -62,16 +64,16 @@
             doquery() {
                 this.restbl = [];
                 this.loading = true;
-                this.$axios.get(restbase() + 'query/period',{params:{
-                    from0: this.from0,
-                    from1: this.from1,
-                    to0: this.to0,
-                    to1: this.to1
+                this.$axios.get(restbase() + 'queryrec/consume',{params:{
+                    from: this.fromdate,
+                    to: this.todate,
+                    itemname: this.itemname,
+                    branch: this.branch
                 }}).then(response => {
                     this.loading = false;
                     const d = response.data.data;
                     this.restbl = d;
-                    this.$refs['qtr2'].showtable(d);
+                    this.$refs['qt'].showtable(d);
                 })
                 .catch(error => {
                     this.loading = false;
@@ -92,7 +94,7 @@
 </script>
 
 <style>
-    .q2f1{
+    .r2f1{
         width: 410px;
         background-color: white;
         padding: 20px;

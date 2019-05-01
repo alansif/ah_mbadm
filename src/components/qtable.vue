@@ -3,7 +3,7 @@
         <div v-show="show">
             <div class="qtd1">
                 <div style="margin-bottom: 8px;font-size: 14px;">{{label}}</div>
-                <el-table :data="tableData" border stripe :max-height="500" style="width: 100%">
+                <el-table :data="tableData" border stripe :max-height="600" style="width: 100%">
                     <el-table-column
                             v-for="col in cols" :key="col.label"
                             :prop="col.prop" :label="col.label" :width="col.width">

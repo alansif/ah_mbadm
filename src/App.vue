@@ -17,7 +17,7 @@
             <el-container>
                 <el-aside width="180px">
                     <el-menu :router="true" :default-active="$route.path" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-                        <el-submenu index="1" v-show="false">
+                        <el-submenu index="100" v-show="false">
                             <template slot="title"><i class="el-icon-message"></i>导航一</template>
                             <el-menu-item-group>
                                 <template slot="title">分组一</template>
@@ -40,7 +40,7 @@
                         <el-menu-item index="/9" :disabled="dis09"><i class="el-icon-goods"></i>余额消费</el-menu-item>
                         <el-menu-item index="/b" :disabled="dis0b"><i class="el-icon-edit-outline"></i>修改信息</el-menu-item>
                         <el-menu-item index="/8" :disabled="dis08"><i class="el-icon-date"></i>修改效期</el-menu-item>
-                        <el-submenu index="">
+                        <el-submenu index="200">
                             <template slot="title">
                                 <i class="el-icon-search"></i>
                                 <span slot="title">查询</span>
@@ -48,6 +48,20 @@
                             <el-menu-item index="/2" :disabled="dis02">客户查询</el-menu-item>
                             <el-menu-item index="/a" :disabled="dis02">有效期查询</el-menu-item>
                             <el-menu-item index="/c" :disabled="dis02">证件查询</el-menu-item>
+                            <el-menu-item index="/d" :disabled="dis02">综合查询</el-menu-item>
+                        </el-submenu>
+                        <el-submenu index="300">
+                            <template slot="title">
+                                <i class="el-icon-tickets"></i>
+                                <span slot="title">操作记录</span>
+                            </template>
+                            <el-menu-item index="/13" :disabled="dis13">开卡记录</el-menu-item>
+                            <el-menu-item index="/14" :disabled="dis14">续卡记录</el-menu-item>
+                            <el-menu-item index="/15" :disabled="dis15">转卡记录</el-menu-item>
+                            <el-menu-item index="/16" :disabled="dis16">收款记录</el-menu-item>
+                            <el-menu-item index="/17" :disabled="dis17">注销记录</el-menu-item>
+                            <el-menu-item index="/18" :disabled="dis18">延期记录</el-menu-item>
+                            <el-menu-item index="/19" :disabled="dis19">消费记录</el-menu-item>
                         </el-submenu>
                     </el-menu>
                 </el-aside>
@@ -102,7 +116,14 @@
             dis07: function() { return (this.privileges !== '*') && (this.privileges.indexOf('会员注销') === -1) },
             dis09: function() { return (this.privileges !== '*') && (this.privileges.indexOf('日常体检') === -1) },
             dis0b: function() { return (this.privileges !== '*') && (this.privileges.indexOf('修改卡信息') === -1) },
-            dis08: function() { return (this.privileges !== '*') && (this.privileges.indexOf('修改卡有效期') === -1) }
+            dis08: function() { return (this.privileges !== '*') && (this.privileges.indexOf('修改卡有效期') === -1) },
+            dis13: function() { return false },
+            dis14: function() { return false },
+            dis15: function() { return false },
+            dis16: function() { return false },
+            dis17: function() { return false },
+            dis18: function() { return false },
+            dis19: function() { return false }
         },
         mounted() {
         },
