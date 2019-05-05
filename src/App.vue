@@ -53,7 +53,7 @@
                         <el-submenu index="300">
                             <template slot="title">
                                 <i class="el-icon-tickets"></i>
-                                <span slot="title">操作记录</span>
+                                <span slot="title">操作记录查询</span>
                             </template>
                             <el-menu-item index="/13" :disabled="dis13">开卡记录</el-menu-item>
                             <el-menu-item index="/14" :disabled="dis14">续卡记录</el-menu-item>

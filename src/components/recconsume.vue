@@ -17,6 +17,9 @@
                         style="width: 140px">
                 </el-date-picker>
             </el-form-item>
+            <el-form-item label="证件号">
+                <el-input :maxlength="18" v-model="idnumber" style="width:180px"></el-input>
+            </el-form-item>
             <el-form-item label="项目名称">
                 <el-select v-model="itemname" style="width:110px">
                     <el-option value="*"></el-option>
@@ -54,6 +57,7 @@
             return {
                 fromdate: '',
                 todate: '',
+				idnumber: '',
                 itemname: '*',
                 branch: '*',
                 loading: false,
@@ -67,6 +71,7 @@
                 this.$axios.get(restbase() + 'queryrec/consume',{params:{
                     from: this.fromdate,
                     to: this.todate,
+					idnumber: this.idnumber,
                     itemname: this.itemname,
                     branch: this.branch
                 }}).then(response => {
@@ -95,7 +100,7 @@
 
 <style>
     .r2f1{
-        width: 410px;
+        width: 685px;
         background-color: white;
         padding: 20px;
         margin-bottom: 8px;
