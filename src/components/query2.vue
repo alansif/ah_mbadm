@@ -17,7 +17,7 @@
                         style="width: 140px">
                 </el-date-picker>
             </el-form-item>
-            <el-form-item label="有效期止">
+            <el-form-item label="延期止">
                 <el-date-picker
                         v-model="to0"
                         value-format="yyyy-MM-dd"

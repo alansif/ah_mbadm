@@ -19,7 +19,7 @@
                         style="width: 233px">
                 </el-date-picker>
             </el-form-item>
-            <el-form-item label="有效期止" prop="period1">
+            <el-form-item label="延期止" prop="period1">
                 <el-date-picker
                         v-model="form1.period1"
                         value-format="yyyy-MM-dd"
@@ -69,7 +69,7 @@
                 this.$refs['bic'].query(this.idnumber, (err, data) => {
                     if (!err) {
                         this.form1.period0 = moment(data['有效期起始']).format('YYYY-MM-DD');
-                        this.form1.period1 = moment(data['有效期截止']).format('YYYY-MM-DD');
+                        this.form1.period1 = moment(data['延期止']).format('YYYY-MM-DD');
                         this.showbaseinfo = true;
                         this.cando = true;
                     }
