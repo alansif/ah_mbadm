@@ -20,6 +20,9 @@
             <el-form-item label="证件号">
                 <el-input :maxlength="18" v-model="idnumber" style="width:180px"></el-input>
             </el-form-item>
+            <el-form-item label="健康顾问">
+                <el-input v-model="advisor" style="width:120px"></el-input>
+            </el-form-item>
             <div style="text-align: center">
                 <el-button type="primary" :loading="loading" @click="doquery" style="width: 160px">查询</el-button>
                 <el-button @click="exportfile" :disabled="restbl.length === 0" style="width: 160px">导出{{restbl.length}}项</el-button>
@@ -39,7 +42,8 @@
             return {
                 fromdate: '',
                 todate: '',
-				idnumber: '',
+                idnumber: '',
+                advisor: '',
                 loading: false,
                 restbl: []
             }
@@ -51,7 +55,8 @@
                 this.$axios.get(restbase() + 'queryrec/new',{params:{
                     from: this.fromdate,
                     to: this.todate,
-					idnumber: this.idnumber
+                    idnumber: this.idnumber,
+                    advisor: this.advisor
                 }}).then(response => {
                     this.loading = false;
                     const d = response.data.data;
