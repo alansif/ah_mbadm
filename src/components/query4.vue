@@ -29,7 +29,16 @@
             <el-form-item label="套餐余次">
                 <el-input v-model="remaintimes" style="width:120px"></el-input>
             </el-form-item>
-            <el-form-item label="开卡日期">
+            <el-form-item label="账户余额">
+                <el-select v-model="balancegt0" style="width:120px">
+                    <el-option label="*" value=""></el-option>
+                    <el-option value=">0"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="备注">
+                <el-input v-model="comment" style="width:120px"></el-input>
+            </el-form-item>
+            <el-form-item label="签发日期">
                 <el-date-picker
                         v-model="fromdate"
                         value-format="yyyy-MM-dd"
@@ -45,14 +54,21 @@
                         style="width: 149px">
                 </el-date-picker>
             </el-form-item>
-            <el-form-item label="账户余额">
-                <el-select v-model="balancegt0" style="width:120px">
-                    <el-option label="*" value=""></el-option>
-                    <el-option value=">0"></el-option>
-                </el-select>
+            <el-form-item label="延期止">
+                <el-date-picker
+                        v-model="exfromdate"
+                        value-format="yyyy-MM-dd"
+                        :editable="false"
+                        style="width: 149px">
+                </el-date-picker>
             </el-form-item>
-            <el-form-item label="备注">
-                <el-input v-model="comment" style="width:210px"></el-input>
+            <el-form-item label="至" label-width="22px">
+                <el-date-picker
+                        v-model="extodate"
+                        value-format="yyyy-MM-dd"
+                        :editable="false"
+                        style="width: 149px">
+                </el-date-picker>
             </el-form-item>
             <div style="text-align: center">
                 <el-button type="primary" :loading="loading" @click="doquery" style="width: 160px">查询</el-button>
@@ -78,6 +94,8 @@
                 preferprice: '',
                 fromdate: '',
                 todate: '',
+                exfromdate: '',
+                extodate: '',
                 comment: '',
                 remaintimes: '',
                 balancegt0: '',
@@ -97,6 +115,8 @@
                     preferprice: this.preferprice,
                     fromdate: this.fromdate,
                     todate: this.todate,
+                    exfromdate: this.exfromdate,
+                    extodate: this.extodate,
                     comment: this.comment,
                     remaintimes: this.remaintimes,
                     balancegt0: this.balancegt0
