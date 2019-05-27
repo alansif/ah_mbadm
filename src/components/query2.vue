@@ -17,6 +17,22 @@
                         style="width: 140px">
                 </el-date-picker>
             </el-form-item>
+            <el-form-item label="有效期止">
+                <el-date-picker
+                        v-model="exp0"
+                        value-format="yyyy-MM-dd"
+                        :editable="false"
+                        style="width: 140px">
+                </el-date-picker>
+            </el-form-item>
+            <el-form-item label="至" label-width="22px">
+                <el-date-picker
+                        v-model="exp1"
+                        value-format="yyyy-MM-dd"
+                        :editable="false"
+                        style="width: 140px">
+                </el-date-picker>
+            </el-form-item>
             <el-form-item label="延期止">
                 <el-date-picker
                         v-model="to0"
@@ -52,6 +68,8 @@
             return {
                 from0: '',
                 from1: '',
+                exp0: '',
+                exp1: '',
                 to0: '',
                 to1: '',
                 loading: false,
@@ -65,6 +83,8 @@
                 this.$axios.get(restbase() + 'query/period',{params:{
                     from0: this.from0,
                     from1: this.from1,
+                    exp0: this.exp0,
+                    exp1: this.exp1,
                     to0: this.to0,
                     to1: this.to1
                 }}).then(response => {
@@ -93,7 +113,7 @@
 
 <style>
     .q2f1{
-        width: 410px;
+        width: 820px;
         background-color: white;
         padding: 20px;
         margin-bottom: 8px;

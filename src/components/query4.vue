@@ -54,6 +54,22 @@
                         style="width: 149px">
                 </el-date-picker>
             </el-form-item>
+            <el-form-item label="有效期止">
+                <el-date-picker
+                        v-model="expfromdate"
+                        value-format="yyyy-MM-dd"
+                        :editable="false"
+                        style="width: 149px">
+                </el-date-picker>
+            </el-form-item>
+            <el-form-item label="至" label-width="22px">
+                <el-date-picker
+                        v-model="exptodate"
+                        value-format="yyyy-MM-dd"
+                        :editable="false"
+                        style="width: 149px">
+                </el-date-picker>
+            </el-form-item>
             <el-form-item label="延期止">
                 <el-date-picker
                         v-model="exfromdate"
@@ -94,6 +110,8 @@
                 preferprice: '',
                 fromdate: '',
                 todate: '',
+                expfromdate: '',
+                exptodate: '',
                 exfromdate: '',
                 extodate: '',
                 comment: '',
@@ -115,6 +133,8 @@
                     preferprice: this.preferprice,
                     fromdate: this.fromdate,
                     todate: this.todate,
+                    expfromdate: this.expfromdate,
+                    exptodate: this.exptodate,
                     exfromdate: this.exfromdate,
                     extodate: this.extodate,
                     comment: this.comment,
