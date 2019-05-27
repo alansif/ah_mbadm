@@ -20,6 +20,9 @@
             <el-form-item label="证件号">
                 <el-input :maxlength="18" v-model="idnumber" style="width:180px"></el-input>
             </el-form-item>
+            <el-form-item label="操作人员">
+                <el-input v-model="operator" style="width:80px"></el-input>
+            </el-form-item>
             <el-form-item label="项目名称">
                 <el-select v-model="itemname" style="width:110px">
                     <el-option value="*"></el-option>
@@ -57,7 +60,8 @@
             return {
                 fromdate: '',
                 todate: '',
-				idnumber: '',
+                idnumber: '',
+                operator: '',
                 itemname: '*',
                 branch: '*',
                 loading: false,
@@ -71,7 +75,8 @@
                 this.$axios.get(restbase() + 'queryrec/consume',{params:{
                     from: this.fromdate,
                     to: this.todate,
-					idnumber: this.idnumber,
+                    idnumber: this.idnumber,
+                    operator: this.operator,
                     itemname: this.itemname,
                     branch: this.branch
                 }}).then(response => {

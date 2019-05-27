@@ -20,6 +20,9 @@
             <el-form-item label="证件号">
                 <el-input :maxlength="18" v-model="idnumber" style="width:180px"></el-input>
             </el-form-item>
+            <el-form-item label="操作人员">
+                <el-input v-model="operator" style="width:80px"></el-input>
+            </el-form-item>
             <el-form-item label="健康顾问">
                 <el-input v-model="advisor" style="width:120px"></el-input>
             </el-form-item>
@@ -43,6 +46,7 @@
                 fromdate: '',
                 todate: '',
                 idnumber: '',
+                operator: '',
                 advisor: '',
                 loading: false,
                 restbl: []
@@ -56,6 +60,7 @@
                     from: this.fromdate,
                     to: this.todate,
                     idnumber: this.idnumber,
+                    operator: this.operator,
                     advisor: this.advisor
                 }}).then(response => {
                     this.loading = false;

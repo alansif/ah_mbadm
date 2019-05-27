@@ -20,6 +20,9 @@
             <el-form-item label="证件号">
                 <el-input :maxlength="18" v-model="idnumber" style="width:180px"></el-input>
             </el-form-item>
+            <el-form-item label="操作人员">
+                <el-input v-model="operator" style="width:80px"></el-input>
+            </el-form-item>
             <el-form-item label="颜色">
                 <el-select v-model="color" style="width:110px">
                     <el-option label="全部" value=""></el-option>
@@ -46,6 +49,7 @@
                 fromdate: '',
                 todate: '',
                 idnumber: '',
+                operator: '',
                 color: '',
                 loading: false,
                 restbl: []
@@ -59,6 +63,7 @@
                     from: this.fromdate,
                     to: this.todate,
                     idnumber: this.idnumber,
+                    operator: this.operator,
                     color: this.color
                 }}).then(response => {
                     this.loading = false;
