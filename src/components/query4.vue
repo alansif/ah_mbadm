@@ -86,6 +86,9 @@
                         style="width: 149px">
                 </el-date-picker>
             </el-form-item>
+            <el-form-item label="操作人员">
+                <el-input v-model="operator" style="width:120px"></el-input>
+            </el-form-item>
             <div style="text-align: center">
                 <el-button type="primary" :loading="loading" @click="doquery" style="width: 160px">查询</el-button>
                 <el-button @click="exportfile" :disabled="restbl.length === 0" style="width: 160px">导出{{restbl.length}}项</el-button>
@@ -117,6 +120,7 @@
                 comment: '',
                 remaintimes: '',
                 balancegt0: '',
+                operator: '',
                 loading: false,
                 restbl: []
             }
@@ -139,7 +143,8 @@
                     extodate: this.extodate,
                     comment: this.comment,
                     remaintimes: this.remaintimes,
-                    balancegt0: this.balancegt0
+                    balancegt0: this.balancegt0,
+                    operator: this.operator
                 }}).then(response => {
                     this.loading = false;
                     const d = response.data.data;
