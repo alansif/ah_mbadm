@@ -64,7 +64,7 @@
                     period0: '',
                     period1: '',
                     mode: '连续续卡',
-                    price: 0,
+                    price: ''
                 },
                 showbaseinfo: false,
                 cando: false,
