@@ -21,7 +21,17 @@
                 <el-input :maxlength="18" v-model="idnumber" style="width:180px"></el-input>
             </el-form-item>
             <el-form-item label="操作人员">
-                <el-input v-model="operator" style="width:80px"></el-input>
+                <el-input v-model="operator" style="width:100px"></el-input>
+            </el-form-item>
+            <el-form-item label="续卡次数">
+                <el-select v-model="numrenew" style="width:110px">
+                    <el-option label="全部" value=""></el-option>
+                    <el-option label="0" value="1"></el-option>
+                    <el-option label="1" value="2"></el-option>
+                    <el-option label="2" value="3"></el-option>
+                    <el-option label="3" value="4"></el-option>
+                    <el-option label="4" value="5"></el-option>
+                </el-select>
             </el-form-item>
             <div style="text-align: center">
                 <el-button type="primary" :loading="loading" @click="doquery" style="width: 160px">查询</el-button>
@@ -44,6 +54,7 @@
                 todate: '',
 				idnumber: '',
                 operator: '',
+                numrenew: '',
                 loading: false,
                 restbl: []
             }
@@ -56,7 +67,8 @@
                     from: this.fromdate,
                     to: this.todate,
 					idnumber: this.idnumber,
-                    operator: this.operator
+                    operator: this.operator,
+                    numrenew: this.numrenew
                 }}).then(response => {
                     this.loading = false;
                     const d = response.data.data;
