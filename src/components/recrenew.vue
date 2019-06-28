@@ -26,11 +26,12 @@
             <el-form-item label="续卡次数">
                 <el-select v-model="numrenew" style="width:110px">
                     <el-option label="全部" value=""></el-option>
-                    <el-option label="0" value="1"></el-option>
-                    <el-option label="1" value="2"></el-option>
-                    <el-option label="2" value="3"></el-option>
-                    <el-option label="3" value="4"></el-option>
-                    <el-option label="4" value="5"></el-option>
+                    <el-option value="0"></el-option>
+                    <el-option value="1"></el-option>
+                    <el-option value="2"></el-option>
+                    <el-option value="3"></el-option>
+                    <el-option value="4"></el-option>
+                    <el-option value="5"></el-option>
                 </el-select>
             </el-form-item>
             <div style="text-align: center">
