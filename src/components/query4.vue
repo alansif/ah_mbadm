@@ -1,14 +1,12 @@
 <template>
     <div>
         <el-form :inline="true" label-width="80px" @submit.native.prevent class="q4f1">
-            <el-form-item label="会员状态">
+            <el-form-item label="卡片状态">
                 <el-select v-model="mbst" style="width:120px">
                     <el-option label="*" value=""></el-option>
                     <el-option value="新卡使用"></el-option>
                     <el-option value="已经停用"></el-option>
                     <el-option value="会员转卡"></el-option>
-                    <el-option value="有效会员"></el-option>
-                    <el-option value="无效会员"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="使用分类">
@@ -91,6 +89,13 @@
             <el-form-item label="操作人员">
                 <el-input v-model="operator" style="width:120px"></el-input>
             </el-form-item>
+            <el-form-item label="会员状态">
+                <el-select v-model="mbst2" style="width:120px">
+                    <el-option label="*" value=""></el-option>
+                    <el-option value="有效会员"></el-option>
+                    <el-option value="无效会员"></el-option>
+                </el-select>
+            </el-form-item>
             <div style="text-align: center">
                 <el-button type="primary" :loading="loading" @click="doquery" style="width: 160px">查询</el-button>
                 <el-button @click="exportfile" :disabled="restbl.length === 0" style="width: 160px">导出{{restbl.length}}项</el-button>
@@ -123,6 +128,7 @@
                 remaintimes: '',
                 balancegt0: '',
                 operator: '',
+                mbst2: '',
                 loading: false,
                 restbl: []
             }
@@ -146,7 +152,8 @@
                     comment: this.comment,
                     remaintimes: this.remaintimes,
                     balancegt0: this.balancegt0,
-                    operator: this.operator
+                    operator: this.operator,
+                    mbst2: this.mbst2
                 }}).then(response => {
                     this.loading = false;
                     const d = response.data.data;
