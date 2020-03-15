@@ -7,6 +7,8 @@
                     <el-option value="新卡使用"></el-option>
                     <el-option value="已经停用"></el-option>
                     <el-option value="会员转卡"></el-option>
+                    <el-option value="有效会员"></el-option>
+                    <el-option value="无效会员"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="使用分类">
