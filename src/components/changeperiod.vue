@@ -28,6 +28,15 @@
                         style="width: 232px">
                 </el-date-picker>
             </el-form-item>
+            <el-form-item label="有效期止" prop="period2">
+                <el-date-picker
+                        v-model="form1.period2"
+                        value-format="yyyy-MM-dd"
+                        :clearable="false"
+                        :editable="false"
+                        style="width: 233px">
+                </el-date-picker>
+            </el-form-item>
             <el-form-item label="备注信息" prop="comment"
                           :rules="[{required:true,message:'请填写备注信息'}]">
                 <el-input v-model="form1.comment" style="width: 560px"></el-input>
@@ -50,6 +59,7 @@
                 form1: {
                     period0: '',
                     period1: '',
+                    period2: '',
                     comment: ''
                 },
                 showbaseinfo: false,
@@ -70,6 +80,7 @@
                     if (!err) {
                         this.form1.period0 = moment(data['有效期起始']).format('YYYY-MM-DD');
                         this.form1.period1 = moment(data['延期止']).format('YYYY-MM-DD');
+                        this.form1.period2 = moment(data['有效期截止']).format('YYYY-MM-DD');
                         this.showbaseinfo = true;
                         this.cando = true;
                     }
@@ -78,7 +89,8 @@
             changepd() {
                 const d0 = moment(this.form1.period0);
                 const d1 = moment(this.form1.period1);
-                if (d0 >= d1) {
+                const d2 = moment(this.form1.period2);
+                if ((d0 >= d1)||(d0 >= d2)) {
                     this.$message.error('有效期起止范围错误');
                     return;
                 }
@@ -88,6 +100,7 @@
                         this.$axios.post(restbase() + `card/${this.idnumber}/changeperiod`,{
                             period0: this.form1.period0,
                             period1: this.form1.period1,
+                            period2: this.form1.period2,
                             comment: this.form1.comment,
                             operator:this.$root.oprt
                         })
